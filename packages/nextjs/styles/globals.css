@@ -1,79 +1,49 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
 @theme {
   --shadow-center: 0 0 12px -2px rgb(0 0 0 / 0.05);
   --animate-pulse-fast: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @plugin "daisyui" {
-  themes:
-    light,
-    dark --prefersdark;
+  themes: false;
 }
 
 @plugin "daisyui/theme" {
-  name: "light";
+  name: "win95";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
 
-  --color-primary: #93bbfb;
-  --color-primary-content: #212638;
-  --color-secondary: #dae8ff;
-  --color-secondary-content: #212638;
-  --color-accent: #93bbfb;
-  --color-accent-content: #212638;
-  --color-neutral: #212638;
-  --color-neutral-content: #ffffff;
-  --color-base-100: #ffffff;
-  --color-base-200: #f4f8ff;
-  --color-base-300: #dae8ff;
-  --color-base-content: #212638;
-  --color-info: #93bbfb;
-  --color-success: #34eeb6;
-  --color-warning: #ffcf72;
-  --color-error: #ff8863;
-
-  --radius-field: 1rem;
-  --radius-box: 1rem;
-  --tt-tailw: 6px;
-}
-
-@plugin "daisyui/theme" {
-  name: "dark";
-
-  --color-primary: #212638;
-  --color-primary-content: #f9fbff;
-  --color-secondary: #323f61;
-  --color-secondary-content: #f9fbff;
-  --color-accent: #4969a6;
-  --color-accent-content: #f9fbff;
-  --color-neutral: #f9fbff;
-  --color-neutral-content: #385183;
-  --color-base-100: #385183;
-  --color-base-200: #2a3655;
-  --color-base-300: #212638;
-  --color-base-content: #f9fbff;
-  --color-info: #385183;
-  --color-success: #34eeb6;
-  --color-warning: #ffcf72;
-  --color-error: #ff8863;
-
-  --radius-field: 1rem;
-  --radius-box: 1rem;
-
-  --tt-tailw: 6px;
-  --tt-bg: var(--color-primary);
+  --color-base-100: #c0c0c0;
+  --color-base-200: #a0a0a0;
+  --color-base-300: #808080;
+  --color-base-content: #000000;
+  --color-primary: #000080;
+  --color-primary-content: #ffffff;
+  --color-secondary: #008080;
+  --color-secondary-content: #ffffff;
+  --color-accent: #000080;
+  --color-accent-content: #ffffff;
+  --color-neutral: #808080;
+  --color-neutral-content: #000000;
+  --color-info: #000080;
+  --color-info-content: #ffffff;
+  --color-success: #008000;
+  --color-success-content: #ffffff;
+  --color-warning: #808000;
+  --color-warning-content: #000000;
+  --color-error: #800000;
+  --color-error-content: #ffffff;
+  --radius-field: 0px;
+  --radius-box: 0px;
+  --radius-badge: 0px;
 }
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
   looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
 */
 @layer base {
   *,
@@ -84,12 +54,17 @@
     border-color: var(--color-gray-200, currentColor);
   }
 
-  p {
-    margin: 1rem 0;
-  }
-
+  html,
   body {
     min-height: 100vh;
+    background: #008080;
+    font-family: "MS Sans Serif", "Microsoft Sans Serif", Tahoma, Arial, sans-serif;
+    font-size: 13px;
+    color: #000000;
+  }
+
+  p {
+    margin: 0.5rem 0;
   }
 
   h1,
@@ -97,22 +72,184 @@
   h3,
   h4 {
     margin-bottom: 0.5rem;
-    line-height: 1;
+    line-height: 1.1;
+    font-weight: bold;
   }
 }
 
 :root,
 [data-theme] {
-  background: var(--color-base-200);
+  background: #008080;
+}
+
+/* Windows 95 chrome utilities */
+.win95-raised {
+  box-shadow:
+    inset 1px 1px 0 #ffffff,
+    inset -1px -1px 0 #808080,
+    inset 2px 2px 0 #dfdfdf,
+    inset -2px -2px 0 #404040;
+}
+
+.win95-sunken {
+  box-shadow:
+    inset 1px 1px 0 #808080,
+    inset -1px -1px 0 #ffffff,
+    inset 2px 2px 0 #404040,
+    inset -2px -2px 0 #dfdfdf;
+}
+
+.win95-window {
+  background: #c0c0c0;
+  border: 1px solid #000000;
+  box-shadow:
+    inset 1px 1px 0 #ffffff,
+    inset -1px -1px 0 #808080,
+    inset 2px 2px 0 #dfdfdf,
+    inset -2px -2px 0 #404040;
+}
+
+.win95-titlebar {
+  background: linear-gradient(to right, #000080, #1084d0);
+  color: #ffffff;
+  font-weight: bold;
+  padding: 3px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.win95-titlebar-buttons {
+  display: flex;
+  gap: 2px;
+}
+
+.win95-titlebar-button {
+  width: 18px;
+  height: 16px;
+  background: #c0c0c0;
+  color: #000000;
+  font-family: "Marlett", "MS Sans Serif", sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  box-shadow:
+    inset 1px 1px 0 #ffffff,
+    inset -1px -1px 0 #808080,
+    inset 2px 2px 0 #dfdfdf,
+    inset -2px -2px 0 #404040;
+}
+
+.win95-button {
+  background: #c0c0c0;
+  color: #000000;
+  font-family: "MS Sans Serif", "Microsoft Sans Serif", Tahoma, Arial, sans-serif;
+  font-size: 13px;
+  padding: 4px 12px;
+  border: 1px solid #000000;
+  border-radius: 0;
+  cursor: pointer;
+  box-shadow:
+    inset 1px 1px 0 #ffffff,
+    inset -1px -1px 0 #808080,
+    inset 2px 2px 0 #dfdfdf,
+    inset -2px -2px 0 #404040;
+}
+
+.win95-button:active:not(:disabled) {
+  box-shadow:
+    inset 1px 1px 0 #404040,
+    inset -1px -1px 0 #ffffff,
+    inset 2px 2px 0 #808080,
+    inset -2px -2px 0 #dfdfdf;
+}
+
+.win95-button:disabled {
+  color: #808080;
+  text-shadow: 1px 1px 0 #ffffff;
+  cursor: not-allowed;
+}
+
+.win95-input {
+  background: #ffffff;
+  color: #000000;
+  font-family: "MS Sans Serif", "Microsoft Sans Serif", Tahoma, Arial, sans-serif;
+  font-size: 13px;
+  padding: 3px 4px;
+  border: 1px solid #000000;
+  border-radius: 0;
+  box-shadow:
+    inset 1px 1px 0 #808080,
+    inset -1px -1px 0 #ffffff,
+    inset 2px 2px 0 #404040,
+    inset -2px -2px 0 #dfdfdf;
+  outline: none;
+}
+
+.win95-menubar {
+  background: #c0c0c0;
+  display: flex;
+  gap: 2px;
+  padding: 2px 4px;
+  border-bottom: 1px solid #808080;
+}
+
+.win95-menu-item {
+  padding: 2px 8px;
+  cursor: default;
+  color: #000000;
+}
+
+.win95-menu-item:hover {
+  background: #000080;
+  color: #ffffff;
+}
+
+.win95-statusbar {
+  background: #c0c0c0;
+  padding: 4px 6px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  border-top: 1px solid #ffffff;
+  box-shadow: inset 0 1px 0 #ffffff;
+}
+
+.win95-statusbar-cell {
+  padding: 2px 6px;
+  background: #c0c0c0;
+  box-shadow:
+    inset 1px 1px 0 #808080,
+    inset -1px -1px 0 #ffffff,
+    inset 2px 2px 0 #404040,
+    inset -2px -2px 0 #dfdfdf;
+}
+
+.win95-list {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
+  box-shadow:
+    inset 1px 1px 0 #808080,
+    inset -1px -1px 0 #ffffff,
+    inset 2px 2px 0 #404040,
+    inset -2px -2px 0 #dfdfdf;
+}
+
+.win95-list-item {
+  padding: 6px 8px;
+  border-bottom: 1px dotted #808080;
+}
+
+.win95-list-item:last-child {
+  border-bottom: none;
 }
 
 .btn {
-  @apply shadow-md;
-  border-radius: 9999rem;
-}
-
-.btn.btn-ghost {
-  @apply shadow-none;
+  border-radius: 0;
 }
 
 .link {
